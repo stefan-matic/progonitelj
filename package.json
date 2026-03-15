@@ -1,0 +1,16 @@
+{
+    "name": "violation-app",
+    "version": "1.0.0",
+    "description": "Example npm app with policy violations",
+    "dependencies": {
+        "react": "^17.0.0",
+        "next": "^13.0.0",
+        "axios": "^0.21.0",
+        "lodash": "^4.17.15",
+        "left-pad": "^1.0.0",
+        "event-stream": "^4.0.0"
+    },
+    "devDependencies": {
+        "typescript": "^4.9.0"
+    }
+}
