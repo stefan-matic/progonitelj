@@ -1,7 +1,7 @@
 # Hook definitions for using Progonitelj as a pre-commit repo
 # Usage in other projects:
 #   repos:
-#     - repo: https://github.com/your-org/progonitelj
+#     - repo: https://github.com/stefan-matic/progonitelj
 #       rev: v0.1.0
 #       hooks:
 #         - id: progonitelj-validate

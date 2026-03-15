@@ -32,7 +32,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install Progonitelj
-        run: pip install git+https://github.com/your-org/progonitelj.git
+        run: pip install git+https://github.com/stefan-matic/progonitelj.git
 
       - name: Validate dependencies against policy
         run: progonitelj validate --strict

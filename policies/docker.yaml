@@ -5,7 +5,7 @@ max_cve_severity: HIGH
 # Allowed registries (enforced separately via vendir/registry proxy)
 # allowed_registries:
 #   - registry.company.com
-#   - ghcr.io/your-org
+#   - ghcr.io/stefan-matic
 
 packages:
   # Minimal base images

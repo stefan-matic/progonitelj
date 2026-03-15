@@ -256,7 +256,7 @@ def init(path):
     # Write .progonitelj.yaml
     config_content = """\
 # Progonitelj configuration
-# Docs: https://github.com/your-org/progonitelj
+# Docs: https://github.com/stefan-matic/progonitelj
 
 policy_dir: ./policies
 
