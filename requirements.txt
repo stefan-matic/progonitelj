@@ -1,0 +1,17 @@
+# VIOLATION: below min_version 3.0.0
+flask==2.0.0
+
+# VIOLATION: below min_version 2.31.0
+requests==2.20.0
+
+# VIOLATION: below min_version 41.0.0 (frequent CVEs)
+cryptography==40.0.0
+
+# VIOLATION: below min_version 2.0.0 (v1.x has known vulnerabilities)
+urllib3==1.26.0
+
+# VIOLATION: below min_version 2.0.0 (v1 is EOL)
+pydantic==1.10.0
+
+# VIOLATION: not in the allowed package list at all
+some-shady-package==1.0.0
