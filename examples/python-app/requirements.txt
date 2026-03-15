@@ -1,0 +1,11 @@
+# Example Python dependencies - mix of passing and failing
+flask==3.0.2
+requests==2.31.0
+numpy==1.26.4
+pyyaml==6.0.1
+
+# This should FAIL - version too old
+# cryptography==40.0.0
+
+# This should FAIL - not in allowed list
+# some-unknown-package==1.0.0

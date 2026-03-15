@@ -1,0 +1,51 @@
+# Vendir configuration - vendor/mirror approved dependencies
+# This protects against sudden upstream repo deletions or compromises
+# Docs: https://carvel.dev/vendir/docs/latest/
+#
+# Run: vendir sync
+# This will download and lock specified content into the vendor/ directory
+
+apiVersion: vendir.k14s.io/v1alpha1
+kind: Config
+
+# Minimum required vendir version
+minimumRequiredVersion: 0.35.0
+
+directories:
+  # Vendor critical Docker base images as tarballs
+  # Protects against Docker Hub deletions/compromises
+  - path: vendor/docker-images
+    contents:
+      - path: alpine
+        docker:
+          image: alpine:3.20
+        includePaths:
+          - "**/*"
+
+  # Vendor critical policy schemas
+  - path: vendor/policies
+    contents:
+      - path: trivy-db
+        git:
+          url: https://github.com/aquasecurity/trivy-db
+          ref: main
+        includePaths:
+          - "pkg/types/**"
+
+  # Example: Vendor a Go module
+  # - path: vendor/go-modules
+  #   contents:
+  #     - path: gin
+  #       git:
+  #         url: https://github.com/gin-gonic/gin
+  #         ref: v1.9.1
+
+  # Example: Vendor an npm package
+  # - path: vendor/npm-packages
+  #   contents:
+  #     - path: react
+  #       git:
+  #         url: https://github.com/facebook/react
+  #         ref: v18.2.0
+  #       includePaths:
+  #         - "packages/react/**"

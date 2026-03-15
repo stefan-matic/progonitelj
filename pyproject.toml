@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "progonitelj"
+version = "0.1.0"
+description = "Supply chain gate for your dependencies - control what packages, images, and tools are allowed"
+readme = "README.md"
+license = "WTFPL"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1.0",
+    "pyyaml>=6.0",
+    "packaging>=23.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+progonitelj = "progonitelj.cli:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/progonitelj"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/progonitelj", "policies"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,58 @@
+ecosystem: docker
+default_allowed: false
+max_cve_severity: HIGH
+
+# Allowed registries (enforced separately via vendir/registry proxy)
+# allowed_registries:
+#   - registry.company.com
+#   - ghcr.io/your-org
+
+packages:
+  # Minimal base images
+  alpine:
+    min_version: "3.19"
+    pinned_versions: ["3.19.*", "3.20.*"]
+    notes: "Preferred minimal base image"
+
+  # Language runtimes
+  python:
+    pinned_versions: ["3.11-slim", "3.12-slim", "3.13-slim"]
+    notes: "Use slim variants only - no full Debian images"
+
+  node:
+    pinned_versions: ["20-slim", "22-slim"]
+    notes: "LTS versions only, slim variants"
+
+  php:
+    pinned_versions: ["8.2-fpm-alpine", "8.3-fpm-alpine"]
+    notes: "Alpine-based FPM only"
+
+  golang:
+    pinned_versions: ["1.22-alpine", "1.23-alpine"]
+    notes: "Alpine-based, for multi-stage builds only"
+
+  # Infrastructure
+  nginx:
+    pinned_versions: ["1.27-alpine"]
+    notes: "Alpine-based nginx"
+
+  postgres:
+    pinned_versions: ["16-alpine", "17-alpine"]
+    notes: "Alpine-based PostgreSQL"
+
+  redis:
+    pinned_versions: ["7-alpine"]
+    notes: "Alpine-based Redis"
+
+  # Blocked images
+  ubuntu:
+    allowed: false
+    notes: "Use alpine instead - smaller attack surface and image size"
+
+  centos:
+    allowed: false
+    notes: "EOL - use alpine"
+
+  latest:
+    allowed: false
+    notes: "Never use :latest tag - always pin versions"

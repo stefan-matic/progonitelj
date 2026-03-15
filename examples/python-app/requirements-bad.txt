@@ -1,0 +1,6 @@
+# Example Python dependencies - should FAIL validation
+flask==2.0.0
+requests==2.20.0
+cryptography==40.0.0
+some-unknown-package==1.0.0
+urllib3==1.26.0

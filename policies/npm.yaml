@@ -1,0 +1,73 @@
+ecosystem: npm
+default_allowed: false
+max_cve_severity: HIGH
+
+packages:
+  # Frameworks
+  react:
+    min_version: "18.2.0"
+  react-dom:
+    min_version: "18.2.0"
+    notes: "Must match react version"
+  next:
+    min_version: "14.0.0"
+  vue:
+    min_version: "3.3.0"
+  express:
+    min_version: "4.18.0"
+  fastify:
+    min_version: "4.24.0"
+  hono:
+    min_version: "3.10.0"
+
+  # Build tools
+  typescript:
+    min_version: "5.0.0"
+  vite:
+    min_version: "5.0.0"
+  esbuild:
+    min_version: "0.19.0"
+  webpack:
+    min_version: "5.89.0"
+
+  # Testing
+  vitest:
+    min_version: "1.0.0"
+  jest:
+    min_version: "29.0.0"
+  "@testing-library/react":
+    min_version: "14.0.0"
+  playwright:
+    min_version: "1.40.0"
+
+  # Utilities
+  axios:
+    min_version: "1.6.0"
+    notes: "Frequent CVEs - keep updated"
+  lodash:
+    min_version: "4.17.21"
+    notes: "Pin exact version - prototype pollution history"
+  zod:
+    min_version: "3.22.0"
+  date-fns:
+    min_version: "2.30.0"
+
+  # CSS / UI
+  tailwindcss:
+    min_version: "3.3.0"
+  postcss:
+    min_version: "8.4.0"
+  autoprefixer:
+    min_version: "10.4.0"
+
+  # Linting
+  eslint:
+    min_version: "8.50.0"
+  prettier:
+    min_version: "3.0.0"
+
+  # Types
+  "@types/node":
+    min_version: "20.0.0"
+  "@types/react":
+    min_version: "18.2.0"

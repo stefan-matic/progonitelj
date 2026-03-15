@@ -1,0 +1,58 @@
+ecosystem: php
+default_allowed: false
+max_cve_severity: HIGH
+
+packages:
+  # Frameworks
+  laravel/framework:
+    min_version: "10.0"
+    notes: "LTS versions preferred"
+  symfony/symfony:
+    min_version: "6.4"
+    notes: "LTS versions preferred"
+  slim/slim:
+    min_version: "4.12.0"
+
+  # HTTP / API
+  guzzlehttp/guzzle:
+    min_version: "7.5"
+  guzzlehttp/psr7:
+    min_version: "2.6"
+
+  # Database
+  doctrine/orm:
+    min_version: "2.17"
+  doctrine/dbal:
+    min_version: "3.7"
+
+  # Logging
+  monolog/monolog:
+    min_version: "3.0"
+
+  # Security
+  firebase/php-jwt:
+    min_version: "6.9"
+  defuse/php-encryption:
+    min_version: "2.4"
+
+  # Testing
+  phpunit/phpunit:
+    min_version: "10.0"
+  phpstan/phpstan:
+    min_version: "1.10"
+  squizlabs/php_codesniffer:
+    min_version: "3.7"
+
+  # Templating
+  twig/twig:
+    min_version: "3.8"
+  league/plates:
+    min_version: "3.5"
+
+  # Utilities
+  nesbot/carbon:
+    min_version: "2.72"
+  ramsey/uuid:
+    min_version: "4.7"
+  league/flysystem:
+    min_version: "3.0"

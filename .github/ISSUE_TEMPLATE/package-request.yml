@@ -1,0 +1,84 @@
+name: Package Request
+description: Request a new package to be added to the allowed list
+title: "[Package Request] "
+labels: ["package-request"]
+body:
+  - type: dropdown
+    id: ecosystem
+    attributes:
+      label: Ecosystem
+      description: Which ecosystem is this package for?
+      options:
+        - Docker Image
+        - Python (pip)
+        - PHP (Composer)
+        - npm / bun
+        - Go module
+    validations:
+      required: true
+
+  - type: input
+    id: package-name
+    attributes:
+      label: Package Name
+      description: Full package name (e.g., numpy, laravel/framework, @types/react, github.com/gin-gonic/gin)
+      placeholder: e.g., requests
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Requested Version
+      description: Version or version range you need
+      placeholder: e.g., >=2.31.0 or 2.31.*
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Business Justification
+      description: Why is this package needed? What problem does it solve?
+      placeholder: |
+        We need this package because...
+        It will be used in project X for...
+        Alternatives considered: ...
+    validations:
+      required: true
+
+  - type: input
+    id: project
+    attributes:
+      label: Project / Team
+      description: Which project or team needs this package?
+    validations:
+      required: true
+
+  - type: textarea
+    id: security-review
+    attributes:
+      label: Security Considerations
+      description: |
+        Have you checked for known vulnerabilities?
+        - Check https://security.snyk.io/ or https://nvd.nist.gov/
+        - Run: trivy fs . (if already using the package locally)
+      placeholder: |
+        - [ ] No known CVEs with severity >= HIGH
+        - [ ] Package is actively maintained (last commit < 6 months)
+        - [ ] Package has > 1000 GitHub stars or is from a trusted org
+        - [ ] License is compatible (MIT, Apache-2.0, BSD)
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have verified there are no HIGH or CRITICAL CVEs for this version
+          required: true
+        - label: I have checked that this package is actively maintained
+          required: true
+        - label: I have confirmed the license is compatible with our projects
+          required: true
+        - label: I have checked if an already-approved alternative exists
+          required: true

@@ -1,0 +1,21 @@
+# Hook definitions for using Progonitelj as a pre-commit repo
+# Usage in other projects:
+#   repos:
+#     - repo: https://github.com/your-org/progonitelj
+#       rev: v0.1.0
+#       hooks:
+#         - id: progonitelj-validate
+
+- id: progonitelj-validate
+  name: Progonitelj - Validate dependencies against policy
+  entry: progonitelj validate --strict
+  language: python
+  pass_filenames: false
+  always_run: true
+
+- id: progonitelj-validate-docker
+  name: Progonitelj - Validate Dockerfiles
+  entry: progonitelj validate --ecosystem docker --file
+  language: python
+  files: "Dockerfile.*"
+  types: [file]

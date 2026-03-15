@@ -1,0 +1,17 @@
+# Mise configuration - managed tool versions
+# Install mise: https://mise.jdx.dev/getting-started.html
+# This ensures everyone uses the same tool versions
+
+[tools]
+python = "3.12"
+node = "22"
+go = "1.22"
+php = "8.3"
+
+# Progonitelj-specific tools
+# trivy = "latest"  # Install via system package manager instead
+
+[env]
+# Ensure progonitelj is available
+VIRTUAL_ENV = "{{config_root}}/.venv"
+PATH = ["{{config_root}}/.venv/bin", "{{env.PATH}}"]

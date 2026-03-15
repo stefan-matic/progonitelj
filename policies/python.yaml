@@ -1,0 +1,73 @@
+ecosystem: python
+default_allowed: false
+max_cve_severity: HIGH
+
+packages:
+  # Web frameworks
+  django:
+    min_version: "4.2"
+    notes: "LTS versions preferred"
+  flask:
+    min_version: "3.0.0"
+  fastapi:
+    min_version: "0.100.0"
+  uvicorn:
+    min_version: "0.24.0"
+  gunicorn:
+    min_version: "21.2.0"
+
+  # HTTP
+  requests:
+    min_version: "2.31.0"
+  httpx:
+    min_version: "0.25.0"
+  urllib3:
+    min_version: "2.0.0"
+    notes: "v1.x has known vulnerabilities"
+
+  # Data / Science
+  numpy:
+    min_version: "1.26.0"
+  pandas:
+    min_version: "2.1.0"
+  sqlalchemy:
+    min_version: "2.0.0"
+
+  # Security / Crypto
+  cryptography:
+    min_version: "41.0.0"
+    notes: "Frequent CVEs - keep updated"
+  pyjwt:
+    min_version: "2.8.0"
+  bcrypt:
+    min_version: "4.0.0"
+
+  # Utilities
+  pyyaml:
+    min_version: "6.0"
+  click:
+    min_version: "8.1.0"
+  rich:
+    min_version: "13.0.0"
+  packaging:
+    min_version: "23.0"
+  pydantic:
+    min_version: "2.0.0"
+    notes: "v1 is EOL"
+
+  # Testing
+  pytest:
+    min_version: "7.0.0"
+  pytest_cov:
+    min_version: "4.0.0"
+  ruff:
+    min_version: "0.1.0"
+
+  # Task / Async
+  celery:
+    min_version: "5.3.0"
+
+  # Blocked
+  # setuptools:
+  #   allowed: false
+  #   notes: "Use hatchling or flit instead"

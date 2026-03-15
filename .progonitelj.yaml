@@ -1,0 +1,7 @@
+# Progonitelj configuration
+policy_dir: ./policies
+
+# Trivy scanner settings
+trivy:
+  severity: HIGH
+  ignore_unfixed: true

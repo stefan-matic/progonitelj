@@ -1,0 +1,43 @@
+# Pre-commit configuration for projects using Progonitelj
+# Install: pre-commit install
+# Run: pre-commit run --all-files
+
+repos:
+  # Progonitelj policy validation
+  - repo: local
+    hooks:
+      - id: progonitelj-validate
+        name: Progonitelj - Validate dependencies
+        entry: progonitelj validate --strict
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: progonitelj-dockerfile
+        name: Progonitelj - Validate Dockerfiles
+        entry: progonitelj validate --ecosystem docker --file
+        language: system
+        files: "Dockerfile.*"
+        types: [file]
+
+  # Code quality (for progonitelj development)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.0
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  # General hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: [--maxkb=500]
+      - id: detect-private-key
+      - id: check-merge-conflict

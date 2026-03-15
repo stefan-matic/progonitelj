@@ -1,0 +1,71 @@
+# Progonitelj CI/CD pipeline - validates dependencies and scans for vulnerabilities
+# Copy this workflow to your project's .github/workflows/ directory
+
+name: Progonitelj Supply Chain Check
+
+on:
+  pull_request:
+    paths:
+      - "Dockerfile*"
+      - "requirements*.txt"
+      - "pyproject.toml"
+      - "composer.json"
+      - "composer.lock"
+      - "package.json"
+      - "package-lock.json"
+      - "go.mod"
+      - "go.sum"
+      - "policies/**"
+  push:
+    branches: [main, master]
+
+jobs:
+  validate:
+    name: Validate Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Progonitelj
+        run: pip install git+https://github.com/your-org/progonitelj.git
+
+      - name: Validate dependencies against policy
+        run: progonitelj validate --strict
+
+  scan:
+    name: Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "."
+          severity: "HIGH,CRITICAL"
+          exit-code: "1"
+          format: "table"
+
+  docker-scan:
+    name: Docker Image Scan
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.changed_files, 'Dockerfile')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t app:pr-${{ github.event.number }} .
+
+      - name: Scan image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "app:pr-${{ github.event.number }}"
+          severity: "HIGH,CRITICAL"
+          exit-code: "1"
+          format: "table"

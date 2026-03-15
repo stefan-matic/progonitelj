@@ -1,0 +1,8 @@
+# Example Dockerfile - should FAIL validation
+# Uses ubuntu (blocked) and unpinned nginx
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y python3
+
+FROM nginx
+COPY . /usr/share/nginx/html
