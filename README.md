@@ -230,6 +230,18 @@ When a developer needs a package not in the allowed list:
 | [Renovate](https://github.com/renovatebot/renovate) (self-hosted) | Automated dependency updates   |
 | [Forgejo](https://forgejo.org/)                                   | Self-hosted Git (optional)     |
 
+## Example Branches
+
+Each branch demonstrates what happens when dependencies violate the policy. Check them out and run `progonitelj validate` to see the violations in action.
+
+| Branch | Ecosystem | Violations | Command |
+| --- | --- | --- | --- |
+| [`example/docker-violation`](https://github.com/stefan-matic/progonitelj/tree/example/docker-violation) | Docker | `ubuntu` (blocked), `centos` (blocked), `nginx:latest` (unpinned), `python:3.10` (not in pinned list) | `progonitelj validate -f Dockerfile -e docker` |
+| [`example/python-violation`](https://github.com/stefan-matic/progonitelj/tree/example/python-violation) | Python | `flask` 2.0, `requests` 2.20, `cryptography` 40.0, `urllib3` 1.26, `pydantic` 1.10 (all below min), `some-shady-package` (unlisted) | `progonitelj validate -f requirements.txt -e python` |
+| [`example/php-violation`](https://github.com/stefan-matic/progonitelj/tree/example/php-violation) | PHP | `laravel` ^9.0, `guzzle` ^6.5, `monolog` ^2.0, `phpunit` ^9.0 (all below min), `some-unknown/vendor-package` (unlisted) | `progonitelj validate -f composer.json -e php` |
+| [`example/npm-violation`](https://github.com/stefan-matic/progonitelj/tree/example/npm-violation) | npm | `react` 17, `next` 13, `axios` 0.21, `lodash` 4.17.15, `typescript` 4.9 (all below min), `left-pad` & `event-stream` (unlisted) | `progonitelj validate -f package.json -e npm` |
+| [`example/go-violation`](https://github.com/stefan-matic/progonitelj/tree/example/go-violation) | Go | `gin` 1.7, `gorm` 1.20, `zap` 1.20, `jwt` 5.0 (CVE), `x/crypto` 0.10 (all below min), `some-unknown/module` (unlisted) | `progonitelj validate -f go.mod -e go` |
+
 ## Development
 
 ```bash
